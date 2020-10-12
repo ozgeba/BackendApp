@@ -19,16 +19,31 @@ namespace BackendApp.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public string Get(int id)
         {
-            return "value";
+            return string.Format("value={0}",id);
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        // GET api/values/GetException
+        [HttpGet("GetException")]
+        public string GetException()
         {
+            throw new Exception("asdsad");
         }
+
+        //POST api/values/Post
+        [HttpPost("Post")]
+        public string Post([FromBody]int id)
+        {
+            return string.Format("post value={0}", id);
+        }
+
+        //POST api/values/ThrowException
+        [HttpPost("ThrowException")]
+        public void ThrowException()
+        {
+            throw new Exception("asdsad");
+        }        
 
     }
 }
